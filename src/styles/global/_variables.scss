@@ -1,0 +1,17 @@
+$font: 'Red Hat Display', sans-serif;
+
+$primaryfont: 'Anton', sans-serif;
+$secondaryfont: 'Plus Jakarta Sans', sans-serif;
+
+$gradient-primary: linear-gradient(
+  to right,
+  #e6b09f,
+  #ffc697,
+  #9fe6c5,
+  #97ffcb);
+$gradient-second: linear-gradient(
+  to right,
+  darken(#e6b09f, 2%),
+  darken(#ffc697, 2%),
+  darken(#9fe6c5, 2%),
+  darken(#97ffcb, 2%));

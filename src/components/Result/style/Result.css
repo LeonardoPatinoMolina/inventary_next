@@ -1,0 +1,121 @@
+.result {
+    width: 100%;
+    height: 350px;
+    overflow-y: scroll;
+    background: url('../../../images/Fondo-resultados.webp') center;
+    background-size: auto;
+    background-repeat: repeat;
+
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: .5rem;
+    box-sizing: border-box;
+}
+
+.result__item {
+    width: 98%;
+    min-height: 4rem;
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.219);
+    border-radius: .5rem;
+    border: none;
+    background-color: #fff;
+    font-size: 100%;
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    line-height: 0;
+    transition: 100ms;
+    user-select: none;
+    margin-top: .4rem;
+    box-sizing: border-box;
+
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    align-items: center;
+    justify-items: center;
+    padding: 0 .5rem 0 1rem;
+    box-sizing: border-box;
+}
+
+.result__item:hover {
+    outline: 3px solid #bbb;
+    transform: scale(1.02);
+}
+
+.select,
+.remove {
+    font-weight: 700;
+    font-size: 1.3rem;
+    background-color: #adff2f;
+    border-radius: 1rem;
+    justify-self: center;
+    padding: .5rem 1rem;
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+    font-size: 2rem;
+}
+
+.remove {
+    background-color: #ff4e4e;
+}
+
+.select:hover {
+    background-color: #adf5cd;
+    outline: 3px solid rgba(0, 0, 0, 0.202);
+    color: #033;
+}
+
+.remove:hover {
+    background-color: #fcc49e;
+    outline: 3px solid rgba(0, 0, 0, 0.202);
+    color: #904;
+}
+
+.selected-remove {
+    background-color: #fdeaea;
+    border: 1px solid #ff2600;
+}
+
+.remove-principal {
+    position: fixed;
+    right: 6rem;
+    top: 14.5rem;
+    padding: 2rem;
+    background-color: #f00;
+    display: flex;
+    align-items: center;
+    z-index: 12;
+
+}
+
+.remove-principal:hover {
+    background-color: #fa9d9d;
+    color: #cc2323;
+}
+.not-data{
+    width: 98%;
+    min-height: 4rem;
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.219);
+    border-radius: .5rem;
+    border: none;
+    font-size: 100%;
+    text-align: center;
+    line-height: 0;
+    user-select: none;
+    margin-top: .4rem;
+    padding: 0 .5rem 0 1rem;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: #f9f2f4;
+    font-family: century gothic, sans-serif;
+    font-weight: 700;
+    color: #155;
+}
+.result__p{
+    font-size: 100%;
+}

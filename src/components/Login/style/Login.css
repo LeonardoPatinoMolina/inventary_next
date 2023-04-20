@@ -1,0 +1,81 @@
+.login{
+    min-width: 350px;
+    min-height: 430px;
+    padding: 1rem;
+    margin-right: 1rem;
+    box-sizing: border-box;
+    transition: .2s;
+}
+
+.login__content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 1.2rem;
+    box-sizing: border-box;
+}
+.back-admin{
+    background : radial-gradient( #f2e2c9, #ffb06a);
+    border-right: 2px solid #f28f38;
+}
+.back-user{
+    background : radial-gradient( #f3f4f2, #c1d5ff);
+    border-right: 2px solid #78a1fa;
+}
+/*FORMULARIO*/
+.login__form{
+    width: 100%;
+    font-size: inherit;
+}
+.login__form-list{
+    list-style: none;
+    padding: 0;
+    box-sizing: border-box;
+}
+.login__item{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0 1rem 0;
+    border-bottom: 2px solid #ffffff73;
+    align-items: center;
+}
+.login__item:last-child{
+    display: flex;
+    justify-content: flex-end;
+    border: none;
+
+}
+.login__label{
+    
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+.login__text-field-name, .login__text-field-password{
+    width: 35%;
+    min-width: fit-content;
+    /* position: relative;
+    right: 10%; */
+    height: 3rem;
+    border: 2px solid rgb(124, 124, 124) ;
+    border-radius: 6px;
+    font-size: 1.5rem;
+}
+.login__submit{
+    position: relative;
+    right: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logout{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login__logo{
+    height: auto;
+    width: 15rem;
+    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.384));
+    margin: 1rem;
+}
