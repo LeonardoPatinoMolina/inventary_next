@@ -38,7 +38,6 @@ export class AdminRepository implements IAdminRepository {
   /**
    * Método encargado de consultar todos los registros de administrador
    * en existenia en la base de datos
-   * @returns
    */
   async findAll(): Promise<Admin[]> {
     try {
@@ -98,7 +97,7 @@ export class AdminRepository implements IAdminRepository {
     }
   }//end edit}
 
-  insertOne(item: Admin): Promise<void> {
+  insertOne(item: AdminDTO): Promise<void> {
     throw new Error("Method not implemented.");
   }
   remove(id: number): Promise<void> {

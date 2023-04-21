@@ -1,7 +1,7 @@
-export interface Repository<T> {
+export interface Repository<T,Tdto> {
   findOne(id: number): Promise<T>
   findAll(): Promise<T[]>
-  // edit(id: number): Promise<void>
-  insertOne(item: T): Promise<void>
+  edit(id: number, data: Tdto): Promise<void>
+  insertOne(item: Tdto): Promise<void>
   remove(id: number): Promise<void>
 }

@@ -6,7 +6,21 @@ export class Record {
   private operatorId: number;
   private productId: number;
 
-  constructor({fecha,hora,id,operacionId, operatorId,productId}: Record){
+  constructor({ 
+    fecha, 
+    hora, 
+    id, 
+    operacionId, 
+    operatorId, 
+    productId 
+  }: {
+    id: number;
+    fecha: Date;
+    hora: Date;
+    operacionId: number;
+    operatorId: number;
+    productId: number;
+  }) {
     this.fecha = fecha;
     this.id = id;
     this.hora = hora;

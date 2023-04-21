@@ -1,43 +1,50 @@
 export class Product {
   private codigo: number;
-  private prenda: string;
+  private prendaId: number;
   private ubicacion: string;
-  private talla: string;
-  private color: string;
+  private talla: number;
+  private colorId: number;
   private sexo: string;
-  private valorUnitario: string;
-  private cantidad: string;
-  private status: string;
+  private valorUnitario: number;
+  private cantidad: number;
+  private status: number;
 
   constructor({
     codigo,
-    prenda,
+    prendaId,
     ubicacion,
     talla,
-    color,
+    colorId,
     sexo,
     valorUnitario,
     cantidad,
     status,
   }: {
     codigo: number;
-    prenda: string;
+    prendaId: number;
     ubicacion: string;
-    talla: string;
-    color: string;
+    talla: number;
+    colorId: number;
     sexo: string;
-    valorUnitario: string;
-    cantidad: string;
-    status: string;
+    valorUnitario: number;
+    cantidad: number;
+    status: number;
   }) {
     this.codigo = codigo;
-    this.prenda = prenda;
+    this.prendaId = prendaId;
     this.ubicacion = ubicacion;
     this.talla = talla;
-    this.color = color;
+    this.colorId = colorId;
     this.sexo = sexo;
     this.valorUnitario = valorUnitario;
     this.cantidad = cantidad;
     this.status = status;
+  }
+
+  getCantidad(){
+    return this.cantidad;
+  }
+  getValorUnitario(){
+    return this.valorUnitario;
   }
 }

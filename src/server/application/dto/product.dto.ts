@@ -1,20 +1,20 @@
 export class ProductDTO {
   public codigo?: number;
-  public prenda?: string;
+  public prendaId?: string;
   public ubicacion?: string;
-  public talla?: string;
-  public color?: string;
+  public talla?: number;
+  public colorId?: string;
   public sexo?: string;
-  public valorUnitario?: string;
-  public cantidad?: string;
-  public status?: string;
+  public valorUnitario?: number;
+  public cantidad?: number;
+  public status?: number;
 
   constructor(data: ProductDTO){
     this.codigo = data?.codigo;
-    this.prenda = data?.prenda;
+    this.prendaId = data?.prendaId;
     this.ubicacion = data?.ubicacion;
     this.talla = data?.talla;
-    this.color = data?.color;
+    this.colorId = data?.colorId;
     this.sexo = data?.sexo;
     this.valorUnitario = data?.valorUnitario;
     this.cantidad = data?.cantidad;

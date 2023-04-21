@@ -13,7 +13,14 @@ export class Operator {
     credential,
     nombre,
     password
-  }: Operator){
+  }: {
+    id: number;
+    nombre: string;
+    apellido: string;
+    cedula: number;
+    password: string;
+    credential: string;
+  }){
     this.id = id;
     this.nombre = nombre;
     this.apellido = apellido;
