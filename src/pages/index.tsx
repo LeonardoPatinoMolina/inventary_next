@@ -3,7 +3,7 @@ import styles from  '@/styles/home.module.scss';
 import { PageLayout } from '@/components/PageLayout';
 
 const Home: React.FC<void> = () => {
-  
+
   return (
     <PageLayout title="Inicio home" desc='inicio principal'>
       <div className={`${styles.home}`}>

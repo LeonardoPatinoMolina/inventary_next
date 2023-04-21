@@ -1,10 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+export interface LoginState {
+  isLogin: boolean;
+  loginUser: "visit" | "operator"|"admin";
+  idUser?: number;
+}
+
+const initialState: LoginState = {
   isLogin: false,
-  loginUser: 'visit',
-  idUser: null,
-
+  loginUser: "visit",
 };
 //estado referente login:
 //gracias a este estado podemos decirle a la App el estado actual de la sesión de usuario
@@ -13,13 +17,13 @@ export const loginSlice = createSlice({
   
   initialState,
   reducers: {
-    set_isLogin: (state, action) => {
+    set_isLogin: (state: LoginState, action: PayloadAction<boolean>) => {
       state.isLogin = action.payload;
     },
-    set_loginUser: (state, action) => {
+    set_loginUser: (state: LoginState, action: PayloadAction<"visit" | "operator"|"admin">) => {
       state.loginUser = action.payload;
     },
-    set_idUser: (state, action) => {
+    set_idUser: (state: LoginState, action: PayloadAction<number>) => {
       state.idUser = action.payload;
     },
     init: (state, action) =>{

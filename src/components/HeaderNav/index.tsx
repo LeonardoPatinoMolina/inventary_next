@@ -10,7 +10,7 @@ import { useAdminConfiguration } from "../../Hooks/useAdminConfiguration";
 import { useOutsideClick } from "../../Hooks/useOutsideClick";
 import { Modal } from "../Modal";
 import { useModal } from "../../Hooks/useModal";
-// import { useAppSelector } from "@/context/reduxHooks";
+import { useAppSelector } from "@/context/reduxHooks";
 
 export const HeaderNav: React.FC = () => {
   const refClick1 = useRef<EventTarget>();
@@ -19,7 +19,7 @@ export const HeaderNav: React.FC = () => {
 
   useOutsideClick(showListAdmin, [refClick1, refClick2, refClick3]);
 
-  // const { loginUser } = useAppSelector(state=>state.login); //usuario logeado o visitante
+  const { loginUser } = useAppSelector(state=>state.login); //usuario logeado o visitante
   const [loot, openModal, closeModal] = useModal({isOpen: false});
   const configAdmin = useAdminConfiguration({openModal, closeModal});
   
@@ -70,7 +70,7 @@ export const HeaderNav: React.FC = () => {
             </Link>
           </li>
           <li id="selectAdmin" className={styles.navegation__item}>
-            {"loginUser" ? (
+            {loginUser === "admin" ? (
               <div className={styles.navegation__anchor} onClick={showListAdmin}>
                 ADMINISTRAR
               </div>

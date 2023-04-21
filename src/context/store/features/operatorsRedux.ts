@@ -1,7 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { consultarDatosOperador } from "../../../services/consultasRequest";
+import { consultarDatosOperador } from "@/services/consultasRequest";
 
-const initialState = {
+export interface OperatorsState {
+  operators: Array<any>;
+  chargeReady: boolean;
+}
+
+const initialState: OperatorsState = {
   operators: [],
   chargeReady: false,
 };
