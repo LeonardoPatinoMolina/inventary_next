@@ -1,4 +1,4 @@
-import { ProductDTO } from "@/server/application/dto/product.dto";
+import { ProductDTO } from "../dto/product.dto";
 import { Repository } from "../common/repository.interface";
 import { Product } from "../entities/product.entity";
 

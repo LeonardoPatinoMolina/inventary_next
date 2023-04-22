@@ -1,4 +1,4 @@
-import { RecordDTO } from "@/server/application/dto/record.dto";
+import { RecordDTO } from "@/server/domain/dto/record.dto";
 import { Record } from "@/server/domain/entities/records.entity";
 import { RecordException } from "@/server/domain/exceptions/exceptions";
 import { IRecordRepository } from "@/server/domain/repositories/record.repository";

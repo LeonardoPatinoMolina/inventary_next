@@ -31,7 +31,10 @@ body{
 button{
   border: unset;
 }
-
+input:focus{
+  outline: unset;
+  border: unset;
+}
 .none-display{
   display: none;
 }
@@ -45,7 +48,7 @@ b{
 }
 .boton, .delete-btn, .cancel-btn{
   padding: 1rem 2rem 1rem 2rem;
-    font-size: 1.6rem;
+    font-size: 1rem;
     border: none;
     background-color: #1cdf60;
     border-radius: 5px;
@@ -65,7 +68,7 @@ b{
   background-color: #adf5cd;
   color: #33781d;
   cursor: pointer;
-  box-shadow: 0 0 3px 1px #11aaff;
+  box-shadow: 0 0 10px 0 #0002;
 }
 .delete-btn:hover{
   background-color: #fa9d9d;

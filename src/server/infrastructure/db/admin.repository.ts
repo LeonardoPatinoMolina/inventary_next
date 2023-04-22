@@ -1,8 +1,8 @@
+import { AdminDTO } from "@/server/domain/dto/admin.dto";
 import { Admin } from "@/server/domain/entities/admin.entity";
+import { AdminException } from "@/server/domain/exceptions/exceptions";
 import { IAdminRepository } from "@/server/domain/repositories/admin.repository";
 import { ConnectionDB } from "./connection";
-import { AdminException } from "@/server/domain/exceptions/exceptions";
-import { AdminDTO } from "@/server/application/dto/admin.dto";
 
 export class AdminRepository implements IAdminRepository {
   private connection: ConnectionDB = new ConnectionDB();

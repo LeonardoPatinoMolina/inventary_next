@@ -1,11 +1,11 @@
-import { ProductDTO } from "@/server/application/dto/product.dto";
+import { ProductDTO } from "@/server/domain/dto/product.dto";
 import { Product } from "@/server/domain/entities/product.entity";
+import { ProductException } from "@/server/domain/exceptions/exceptions";
 import { IProductRepository } from "@/server/domain/repositories/product.repository";
 import { ConnectionDB } from "./connection";
-import { ProductException } from "@/server/domain/exceptions/exceptions";
 
 export class ProductRepository implements IProductRepository {
-  private connection: ConnectionDB = new ConnectionDB();
+  private readonly connection: ConnectionDB = new ConnectionDB();
 
   /**
    * Método encargado de consultar un registro en el repositorio product

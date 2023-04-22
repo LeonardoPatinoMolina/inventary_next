@@ -1,4 +1,4 @@
-import { OperatorDTO } from "@/server/application/dto/operator.dto";
+import { OperatorDTO } from "../dto/operator.dto";
 import { Repository } from "../common/repository.interface";
 import { Operator } from "../entities/operator.entity";
 

@@ -59,23 +59,24 @@ export const HeaderNav: React.FC = () => {
     </Modal>
       <nav className={styles.navegation}>
         <ul className={styles.navegation__options}>
-          <li className={styles.navegation__item}>
-            <Link className={styles.navegation__anchor} href={"/"}>
+          <li className={styles.navegation__options__item}>
+            <Link className={styles.navegation__options__item__anchor} href={"/"}>
               <Logo clase={styles.navegation__icon} />
             </Link>
           </li>
-          <li className={styles.navegation__item}>
-            <Link className={styles.navegation__anchor} href="/consult/product">
+          <li className={styles.navegation__options__item}>
+            {/* <Link className={styles.navegation__options__item__anchor} href="/consult/product"> */}
+            <Link className={styles.navegation__options__item__anchor} href="/prueva">
               CONSULTAR<div className={styles["search-icon"]}></div>
             </Link>
           </li>
-          <li id="selectAdmin" className={styles.navegation__item}>
+          <li id="selectAdmin" className={styles.navegation__options__item}>
             {loginUser === "admin" ? (
-              <div className={styles.navegation__anchor} onClick={showListAdmin}>
+              <div className={styles.navegation__options__item__anchor} onClick={showListAdmin}>
                 ADMINISTRAR
               </div>
             ) : (
-              <div className={`${styles.navegation__anchor} inactive`}>ADMINISTRAR</div>
+              <div className={`${styles.navegation__options__item__anchor} inactive`}>ADMINISTRAR</div>
             )}
             <Link
               id="admoption1"
@@ -84,7 +85,7 @@ export const HeaderNav: React.FC = () => {
               onClick={hideListAdmin}
               ref={refClick1 as Ref<HTMLAnchorElement>}
             >
-              OPERADORES
+              Operadores
             </Link>
             <Link
               id="admoption2"
@@ -93,7 +94,7 @@ export const HeaderNav: React.FC = () => {
               onClick={hideListAdmin}
               ref={refClick2 as Ref<HTMLAnchorElement>}
             >
-              CONSULTAR REGISTRO
+              Registros de actividad
             </Link>
             <div
               id="admoption3"
@@ -101,17 +102,17 @@ export const HeaderNav: React.FC = () => {
               onClick={handleConfig}
               ref={refClick3 as Ref<HTMLDivElement>}
             >
-              CONFIGURACIÓN
+              Configuración
               <span className="material-symbols-outlined">settings</span>
             </div>
           </li>
-          <li className={styles.navegation__item}>
-            <Link className={styles.navegation__anchor} href={"/account"}>
+          <li className={styles.navegation__options__item}>
+            <Link className={styles.navegation__options__item__anchor} href={"/account"}>
               CUENTA
             </Link>
           </li>
-          <li className={styles.navegation__item}>
-            <Link className={styles.navegation__anchor} href={"/help"}>
+          <li className={styles.navegation__options__item}>
+            <Link className={styles.navegation__options__item__anchor} href={"/help"}>
               AYUDA
             </Link>
           </li>

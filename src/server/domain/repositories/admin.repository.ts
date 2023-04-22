@@ -1,4 +1,4 @@
-import { AdminDTO } from "@/server/application/dto/admin.dto";
+import { AdminDTO } from "../dto/admin.dto";
 import { Repository } from "../common/repository.interface";
 import { Admin } from "../entities/admin.entity";
 

@@ -1,10 +1,18 @@
 
 export enum ProductException {
   NOT_FOUND = 'Datos de producto no encontrados',
-  FIND_ERROR = 'ocurrió un error en la consulta de datos de productos',
-  EDIT_ERROR = 'ocurrió un error en la edición de datos de productos',
+  FIND_ERROR = 'ocurrió un error en la consulta de datos de producto',
+  EDIT_ERROR = 'ocurrió un error en la edición de datos de producto',
   INSERT_ERROR = 'ocurrió un error en la inserción de nuevo registro en repositorio de productos',
-  DELETE_ERROR = 'ocurrió un error al inetentar remover el regitro de producto en repositorio'
+  DELETE_ERROR = 'ocurrió un error al intentar remover el regitro de producto en repositorio'
+}
+
+export enum OperatorException {
+  NOT_FOUND = 'Datos de operador no encontrados',
+  FIND_ERROR = 'ocurrió un error en la consulta de datos de operadores',
+  EDIT_ERROR = 'ocurrió un error en la edición de datos de operador',
+  INSERT_ERROR = 'ocurrió un error en la inserción de nuevo registro en repositorio de operador',
+  DELETE_ERROR = 'ocurrió un error al intentar remover el regitro de operador en el repositorio'
 }
 
 export enum RecordException {
