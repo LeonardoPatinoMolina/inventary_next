@@ -7,6 +7,7 @@ export interface ProductRState {
   isSuccess?: boolean;
   page?: number;
   totalPages?: number;
+  total?: number;
 }
 
 const initialState: ProductRState = {
@@ -37,6 +38,7 @@ export const productRSlice = createSlice({
       state.products = action.payload.data
       state.page = action.payload.page
       state.totalPages = action.payload.totalPages
+      state.total = action.payload.total
       state.isLoading = false;
       state.isError = false;
       state.isSuccess = true;

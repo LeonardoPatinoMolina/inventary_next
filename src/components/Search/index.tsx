@@ -6,7 +6,8 @@ import { set_query } from '@/context/store/features/searchRedux';
 
 export interface SearchProps {
   filter: "product" | "record";
-  searchCallback: ()=>void;
+  fetchQuery: ()=>void;
+  fetchRefresh: ()=>void;
 }
 
 const FILTERS: any = {
@@ -14,25 +15,30 @@ const FILTERS: any = {
   record: ['fecha', 'operacion', 'operador'],
 }
 
-export const Search: React.FC<SearchProps> = ({ filter, searchCallback }) => {
+export const Search: React.FC<SearchProps> = ({ filter, fetchQuery, fetchRefresh }) => {
 
-  const {query} = useAppSelector(state=>state.search)
+  const searchState = useAppSelector(state=>state.search)
   const dispatch = useAppDispatch();
-  const [placeHolder, setPlaceHolder] = useState<"código"|"cédula">('código');
+  const [placeHolder, setPlaceHolder] = useState<string>('código');
 
   const handleChange = (e: any) => {
     e.preventDefault();
-    dispatch(set_query({query: e.target.value}))
+    dispatch(set_query({query: e.target.value}));
   }
-
+  
   const refreshHandle = () => {
-    searchCallback();
+    fetchRefresh();
+  };
+  
+  const handleSubmit = (e: React.FormEvent)=>{
+    e.preventDefault(); 
+    fetchQuery();
   };
 
   return (
     <>
       <form
-        onSubmit={(e)=>{e.preventDefault(); searchCallback()}}
+        onSubmit={handleSubmit}
         className={'search__form'}
         id='form_search'
       >
@@ -41,7 +47,7 @@ export const Search: React.FC<SearchProps> = ({ filter, searchCallback }) => {
           className={"search__text-field"}
           placeholder={'Ingrese  ' + placeHolder}
           onChange={handleChange}
-          value={query}
+          value={searchState.query}
         />
         <button
           title='buscar'

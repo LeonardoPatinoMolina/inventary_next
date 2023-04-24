@@ -27,6 +27,9 @@ export const searchSlice = createSlice({
     set_page: (state: SearchState, action: PayloadAction<SearchState>) => {
       state.page = action.payload.page;
     },
+    reset_search: (state: SearchState, action: PayloadAction<void>)=>{
+      state = initialState
+    }
   },
 });
 
@@ -34,4 +37,5 @@ export const {
   set_filter,
   set_query,
   set_page,
+  reset_search
 } = searchSlice.actions;

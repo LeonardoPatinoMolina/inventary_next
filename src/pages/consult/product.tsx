@@ -5,18 +5,22 @@ import { Search } from "@/components/Search";
 import { useAppDispatch, useAppSelector } from "@/context/reduxHooks";
 import { setActive } from "@/context/store/features/headernav";
 import { fetchProductBy } from "@/context/store/features/productR";
+import { SearchState, reset_search, set_page } from "@/context/store/features/searchRedux";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 const Consult: React.FC = () => {
   const dispatch = useAppDispatch();
   const searchS = useAppSelector((state) => state.search);
-  const productResState = useAppSelector(
-    (state) => state.productsR
-  );
+  const productResState = useAppSelector((state) => state.productsR);
+  const historySearch = useRef<SearchState>(structuredClone(searchS));
 
   useEffect(() => {
     dispatch(setActive({ active: "consult" }));
+    fetchQuery();
+    return ()=>{
+      dispatch(reset_search());
+    }
   }, []);
 
   /**
@@ -24,12 +28,21 @@ const Consult: React.FC = () => {
    * obtener los datos de consulta
    * @param page parámetro para navegación entre páginas
    */
-  const fetchQuery = (page?: number) => {
-    if(!!page){
-      dispatch(fetchProductBy({...searchS, page}));
-    }else{
-      dispatch(fetchProductBy(searchS));
-    }
+  function fetchQuery (){
+    dispatch(fetchProductBy(searchS));
+    historySearch.current = structuredClone(searchS);
+  };
+
+  /**
+   * Función encargada de hacer la petición al backed
+   */
+  function fetchQueryByPage (page: number){
+    dispatch(fetchProductBy({...historySearch.current, page}));
+    dispatch(set_page({page}));
+  };
+
+  function fetchQueryRefresh (){
+    dispatch(fetchProductBy(historySearch.current));
   };
 
   return (
@@ -38,7 +51,7 @@ const Consult: React.FC = () => {
       desc="Realice sus consultas en la app de seguimiento de inventario"
     >
       <main className="consult back-operator">
-        <Search filter={"product"} searchCallback={fetchQuery} />
+        <Search filter={"product"} fetchQuery={fetchQuery} fetchRefresh={fetchQueryRefresh} />
         <ResultBox data={productResState}>
           {productResState.isSuccess &&
             !productResState.isLoading ?
@@ -77,7 +90,7 @@ const Consult: React.FC = () => {
               </tr>
             )) : <tr className="resultbox__item"><td className="resultbox__p">loading...</td></tr>}
         </ResultBox>
-        <Pagination data={productResState} callbackQuery={fetchQuery} />
+        <Pagination data={productResState} callbackQuery={fetchQueryByPage} />
       </main>
     </PageLayout>
   );

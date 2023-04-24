@@ -9,8 +9,6 @@ export const Filters: React.FC<FilterProps> = ({ setPlaceHolder, options }) => {
   const dispatch = useDispatch();
 
   const handleFilterChange = (e: any) => {
-    //cambia la lista de filtros en el inout -AUTO-
-    // dispatch(set_filterElection(e.target.value));
     if (options.includes(e.target.value)) {
       dispatch(set_filter({filter: e.target.value}));
       setPlaceHolder(e.target.value);

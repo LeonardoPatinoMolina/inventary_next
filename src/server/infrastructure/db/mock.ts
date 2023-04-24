@@ -6,27 +6,30 @@ export class MockeDB implements IProductRepository{
   findOne(id: number): Promise<Product> {
     throw new Error("Method not implemented.");
   }
-  async findAll(): Promise<Product[]> {
-    return Array.from({length: 20}).map((el, indx)=>{
-      return new Product({
-        cantidad: 10,
-        codigo:7272+indx,
-        colorId: 2,
-        color: 'rojo',
-        prendaId: 2,
-        prenda: 'camiseta',
-        sexo: 'M',
-        status: 1,
-        talla: 12,
-        ubicacion: '12-22-d',
-        valorUnitario: 1000
-      });
-    })
+  async findAll(): Promise<{pages: number, data: Product[], total: number}> {
+    throw new Error('not implement')
   }
+  //   return Array.from({length: 20}).map((el, indx)=>{
+  //     return new Product({
+  //       cantidad: 10,
+  //       codigo:7272+indx,
+  //       colorId: 2,
+  //       color: 'rojo',
+  //       prendaId: 2,
+  //       prenda: 'camiseta',
+  //       sexo: 'M',
+  //       status: 1,
+  //       talla: 12,
+  //       ubicacion: '12-22-d',
+  //       valorUnitario: 1000
+  //     });
+  //   })
+  // }
 
-  async findBy(filter: string, query: string,page: number): Promise<{totalPages: number, data: any}>{
+  async findBy(filter: string, query: string,page: number): Promise<{totalPages: number, data: any, total: number}>{
     return {
       totalPages: 1,
+      total: 20,
       data: Array.from({length: 20}).map((el, indx)=>{
         return new Product({
           cantidad: 10,

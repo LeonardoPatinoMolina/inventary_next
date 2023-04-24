@@ -1,0 +1,47 @@
+.slider{
+  height: 400px;
+  width: 400px;
+  margin-inline: auto;
+  overflow: hidden;
+  z-index: 9;
+
+  &__container{
+    min-width: 400px;
+    height: 100%;
+    display: flex;
+    transition: transform 1s;
+    margin: 0;
+
+    &__slide{
+      background-color: green;
+      min-width: 400px;
+      height: 100%;
+      margin: 0;
+      box-sizing: border-box;
+      position: relative;
+    }//end slide
+
+  }//end container
+
+  &__nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    transition: transform .5s;
+
+    &__btn{
+      font-size: 2rem;
+      font-weight: bold;
+      background-color: transparent;
+
+      &:disabled:hover{
+        color: #0007;
+      }
+      &:hover{
+        color: var(--colorAzulBase);
+        transform: scale(1.1);
+      }
+    }
+  }//end nav
+}

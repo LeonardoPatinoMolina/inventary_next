@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export interface PaginationProps {
-  callbackQuery: (page?: number)=>void; //funcion encargada de disparar la navegación entre querys
+  callbackQuery: (page: number)=>void; //funcion encargada de disparar la navegación entre querys
   data: any;
 }
 
@@ -46,7 +46,6 @@ export const Pagination: React.FC<PaginationProps> = ({callbackQuery, data})=>{
 
   function verifyBtnActive(): BtnActiveState{
     if(data.page === undefined) return {next: false, back: false}
-    console.log(data.page, data.totalPages)
     if(data.page === data.totalPages){
       if(data.page === 1){
         return {next: false, back: false}

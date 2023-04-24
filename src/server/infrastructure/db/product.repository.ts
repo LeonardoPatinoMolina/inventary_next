@@ -70,7 +70,7 @@ export class ProductRepository implements IProductRepository {
    * Método encargado de consultar todos los registros de prodctos
    * en existenia en la base de datos
    */
-  async findAll(page?: number): Promise<{pages: number, data: Product[]}> {
+  async findAll(page?: number): Promise<{pages: number, data: Product[], total: number}> {
     try {
       const connect = await this.connection.on();
       const q = `
@@ -123,7 +123,7 @@ export class ProductRepository implements IProductRepository {
           valorUnitario: row.pro_ValorUnitario
         });
       }); //end map
-      return {pages: Math.ceil(rows[0].pro_total / 20),data: prodArray};
+      return {pages: Math.ceil(rows[0].pro_total / 20),data: prodArray, total: rows[0].pro_total};
     } catch (error) {
       this.connection.off();
       throw new Error(ProductException.FIND_ERROR);

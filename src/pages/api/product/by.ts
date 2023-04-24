@@ -11,7 +11,8 @@ export default async function handler( req: NextApiRequest, res: NextApiResponse
       message: 'success',
       data: results.data,
       page: 1,
-      totalPages: results.totalPages
+      totalPages: results.totalPages,
+      total: results.total
     })
   } catch (error) {
     res.status(500).send({message: 'error en el servidor'})
