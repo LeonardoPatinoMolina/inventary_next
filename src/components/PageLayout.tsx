@@ -18,7 +18,7 @@ export const PageLayout: React.FC<pageLayoutProps> = ({ title, desc, children })
         <meta name="description" content={desc} />
       </Head>
       <HeaderNav />
-      <main>{children}</main>
+      {children}
       <Footer />
     </>
   );

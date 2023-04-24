@@ -1,26 +1,23 @@
 export class Product {
-  public userId: string;
-  public codigo: string;
+  public codigo: number;
   public prenda: string;
   public ubicacion: string;
-  public talla: string;
+  public talla: number;
   public color: string;
   public sexo: string;
-  public valorUnitario: string;
-  public cantidad: string;
+  public valorUnitario: number;
+  public cantidad: number;
 
   constructor({
-    userId = "",
-    codigo = "",
+    codigo = 0,
     prenda = "",
     ubicacion = "",
-    talla = "",
+    talla = 0,
     color = "",
     sexo = "",
-    valorUnitario = "",
-    cantidad = ""}
+    valorUnitario = 0,
+    cantidad = 0}
   ) {
-    this.userId = userId;
     this.codigo = codigo;
     this.prenda = prenda;
     this.ubicacion = ubicacion;

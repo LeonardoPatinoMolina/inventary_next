@@ -33,7 +33,7 @@ export const operatorsSlice = createSlice({
       state.operators = action.payload;
     },
     init: (state, action)=>{
-      state.products = action.payload;
+      state.operators = action.payload;
       state.chargeReady = true
     },
   },

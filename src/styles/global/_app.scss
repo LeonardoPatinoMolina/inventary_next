@@ -1,22 +1,11 @@
 @use '../util' as u;
 @use 'mixins' as m;
 
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color: #000;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
 // *{
 //   box-sizing: border-box;
 // }
-html{
+html {
   margin: 0;
   padding: 0;
 }
@@ -30,6 +19,7 @@ body{
 
 button{
   border: unset;
+  cursor: pointer;
 }
 input:focus{
   outline: unset;
@@ -48,26 +38,23 @@ b{
 }
 .boton, .delete-btn, .cancel-btn{
   padding: 1rem 2rem 1rem 2rem;
-    font-size: 1rem;
-    border: none;
-    background-color: #1cdf60;
-    border-radius: 5px;
-    font-weight: 600;
-    color: #fff;
-    max-height: 50px;
-    cursor: pointer;
+  font-size: 1rem;
+  border: none;
+  background-color: #1cdf60;
+  border-radius: 5px;
+  color: #fff;
+  max-height: 50px;
+  cursor: pointer;
 }
 .cancel-btn{
   background-color: #cc2323;
 }
 .delete-btn{
   background-color: #fd2323;
-  cursor: pointer;
 }
 .boton:hover{
   background-color: #adf5cd;
   color: #33781d;
-  cursor: pointer;
   box-shadow: 0 0 10px 0 #0002;
 }
 .delete-btn:hover{

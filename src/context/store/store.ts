@@ -1,25 +1,25 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { apiOperators } from "../api/apiOperators";
-import { apiProducts } from "../api/apiProducts";
-import { apiRecords } from "../api/apiRecords";
-import filterReducer from "./features/filterRedux";
+import { searchSlice } from "./features/searchRedux";
 import loginReducer from "./features/loginRedux";
 import tempReducer from "./features/tempRedux";
+import headernavReducer from "./features/headernav";
+import { productRSlice } from "./features/productR";
+import { recordRSlice } from "./features/recordR";
 
 
 export const store = configureStore({
   reducer: {
     [apiOperators.reducerPath]: apiOperators.reducer,
-    [apiProducts.reducerPath]: apiProducts.reducer,
-    [apiRecords.reducerPath]: apiRecords.reducer,
-    filter: filterReducer,
+    search: searchSlice.reducer,
     login: loginReducer,
     temp: tempReducer,
+    headernav: headernavReducer,
+    productsR: productRSlice.reducer,
+    recordR: recordRSlice.reducer,
   },
   middleware: (getDefaultMiddleware)=> getDefaultMiddleware().concat(
     apiOperators.middleware, 
-    apiProducts.middleware,
-    apiRecords.middleware
   )
 });
 

@@ -61,3 +61,31 @@
   animation-name: shake;
   animation-duration: 0.7s;
 }
+
+@keyframes open_dropdown {
+  from{
+      clip-path: polygon(0 0, 0 0, 100% 0, 100% 0);
+  }
+  to{
+      clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
+  }
+}
+
+@keyframes close_dropdown {
+  from{
+    clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
+  }
+  to{
+    clip-path: polygon(0 0, 0 0, 100% 0, 100% 0);
+  }
+}
+
+.open_dropdown_an, .close_dropdown_an{
+  animation-name: open_dropdown;
+  animation-duration: .3s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+.close_dropdown_an{
+  animation-name: close_dropdown;
+}

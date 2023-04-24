@@ -1,0 +1,72 @@
+@use '../global/' as g;
+@use '../util/' as u;
+
+.resultbox {
+  height: auto;
+  max-height: calc(100vh - 12rem);
+  border-radius: 1rem;
+  box-sizing: border-box;
+  width: 90%;
+  margin-inline: auto;
+  
+  &__table{
+    width: 100%;
+    height: inherit;
+
+    &__body{
+      background: url('/images/Fondo-resultados.webp') center;
+      background-size: auto;
+      background-repeat: repeat;
+      overflow-y: scroll;
+      height:300px;
+      border-radius: 10px 10px 0 0;
+
+      @include g.mix-flex-aligment(flex-start);
+      flex-direction: column;
+      padding: .5rem;
+
+      
+      &::-webkit-scrollbar{
+        width: .5rem;
+      }
+      &::-webkit-scrollbar-track,&::-webkit-scrollbar-thumb{
+        border-radius: u.f-pixel2rem(10);
+      }
+      &::-webkit-scrollbar-thumb{
+        margin: .5rem;
+        background-color: #0004;
+      }
+  
+    }//end body
+  }//end table
+
+  &__item {
+    width: 98%;
+    min-height: 3.5rem;
+    box-shadow: 0 0 8px 0 #0003;
+    border-radius: .5rem;
+    background-color: #fff;
+    font-size: 1rem;
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    line-height: 0;
+    transition: 100ms;
+    user-select: none;
+    margin-top: .4rem;
+    box-sizing: border-box;
+
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    align-items: center;
+    justify-items: center;
+    padding: 0 .5rem 0 1rem;
+    box-sizing: border-box;
+  }//end item
+
+  &__p{
+    @include g.mix-flex-aligment(center);
+    flex-wrap: nowrap;
+    gap: 10px;
+  }
+}

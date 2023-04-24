@@ -1,130 +1,22 @@
-import { Footer } from "@/components/Footer";
-import Head from "next/head";
-import React, { FormEvent, useState } from "react";
+import { PageLayout } from '@/components/PageLayout'
+import { setActive } from '@/context/store/features/headernav';
+import { useAppDispatch } from '@/context/reduxHooks';
+import React, { useEffect } from 'react'
 
-interface FormState {
-  name: string;
-  password: string;
-}
 const Home: React.FC = () => {
+  const dispatch = useAppDispatch();
 
-  const [formData, setformData] = useState<FormState>({
-    name: "",
-    password: "",
-  });
-
-  const [user, setUser] = useState<"operator" | "admin">("operator");
-
-  const handleSwitch = ()=>{
-    setUser((prev)=>{    
-      if(prev === "operator"){
-        return 'admin'
-      }else{
-        return 'operator'
-      }
-    });
-  };
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-  };
+  useEffect(() => {
+    dispatch(setActive({ active: "icon" }));
+  }, []);
 
   return (
-    <>
-      <Head>
-        <title>{"Inicio"}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-          name="description"
-          content={
-            "Ingrese a la app de seguimiento de inventario para acceder a rodos sus beneficios potenciales"
-          }
-        />
-      </Head>
-      <main className={`home back-${user}`}>
-        <aside className="home__aside">
-          <h1 className="home__aside__title">INVENTARY APP</h1>
-          <div className="home__aside__logos">
-            <img 
-              className={`home__aside__logos__logo ${user === "operator" ? "logo_disappear_home" :'logo_appear_home'}`}
-              src="assets/admin_logo.svg" 
-              alt="Logo de usuario próximo a ingresar" 
-              draggable={false} 
-            />
-            <img 
-              className={`home__aside__logos__logo ${user === "admin" ? "logo_disappear_home" :'logo_appear_home'}`}
-              src="assets/operator_logo.svg" 
-              alt="Logo de usuario próximo a ingresar" 
-              draggable={false} 
-            />
-          </div>
-        </aside>
-        <section className="home__section">
-          <form id="form_login" className="login__form" onSubmit={handleSubmit}>
-            <ul className="login__form__list">
-              <li className="login__form__list__item">
-                <h2 className="login__form__title">Ingreso de {user === "operator" ? "Operador" : "Administrador"}</h2>
-              </li>
-              <li className="login__form__list__item">
-                <label className="login__form__list__item__label">
-                  {user === "operator" ? "Cedula" : "Nombre"}
-                  <input
-                    type={user === "operator" ? "number" : "text"}
-                    className="login__form__text-field"
-                    placeholder={user === "operator" ? "cedula" : "nombre"}
-                    defaultValue={formData.name}
-                    onChange={(e) =>
-                      setformData((prev) => ({ ...prev, name: e.target.value }))
-                    }
-                    required
-                  />
-                </label>
-              </li>
-              <li className="login__form__list__item">
-                <label className="login__form__list__item__label">
-                  Contraseña
-                  <input
-                    type="password"
-                    className="login__form__text-field"
-                    placeholder="contraseña"
-                    defaultValue={formData.password}
-                    onChange={(e) =>
-                      setformData((prev) => ({
-                        ...prev,
-                        password: e.target.value,
-                      }))
-                    }
-                    required
-                  />
-                </label>
-              </li>
-              <li className="login__form__list__item">
-                <div 
-                  className="section__switch" 
-                  onClick={handleSwitch}
-                >
-                  <div className={`section__switch__trigger ${user === "admin" && "triggered"}`}>
-                    <span className="material-symbols-outlined">
-                      manage_accounts
-                    </span>
-                  </div>
-                  <div className={`section__switch__trigger ${user === "operator" && "triggered"}`}>
-                    <span className="material-symbols-outlined">
-                      person
-                    </span>
-                  </div>
-                </div>
-                <button className="login__submit boton" type="submit">
-                  Ingresar
-                  <span className="material-symbols-outlined">login</span>
-                </button>
-              </li>
-            </ul>
-          </form>
-        </section>
+    <PageLayout title='inicio' desc="Realice sus consultas en la app de seguimiento de inventario">
+      <main className='home back-operator'>
+        lorem
       </main>
-      <Footer />
-    </>
-  );
-};
+    </PageLayout>
+  )
+}
 
-export default Home;
+export default Home

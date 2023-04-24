@@ -1,4 +1,4 @@
-import { useRef, useEffect, RefObject } from "react";
+import { useEffect, RefObject } from "react";
 
 export const useOutsideClick = (callback: any, refs: RefObject<EventTarget | undefined>[]) => {
 

@@ -9,6 +9,7 @@ export class ConnectionDB {
    */
   async on(): Promise<Connection> {
     const connection = await mysql.createConnection({
+      port: 3306,
       host: process.env.MYSQL_DB_HOST,
       user: process.env.MYSQL_DB_USER,
       database: process.env.MYSQL_DB_NAME

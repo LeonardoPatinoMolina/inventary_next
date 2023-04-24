@@ -19,16 +19,16 @@ export default Prueva;
 
 // You should use getServerSideProps when:
 // - Only if you need to pre-render a page whose data must be fetched at request time
-import { GetServerSideProps } from 'next'
+// import { GetServerSideProps } from 'next'
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
+// export const getServerSideProps: GetServerSideProps = async (ctx) => {
       
-  const delay = (s: number) => new Promise(resolve => setTimeout(resolve, s))
-  const res = await fetch("https://jsonplaceholder.typicode.com/users")
-  await delay(2000)
-  const data = await res.json();
-  return {
-    props: {
-    }
-  }
-}
+//   const delay = (s: number) => new Promise(resolve => setTimeout(resolve, s))
+//   const res = await fetch("https://jsonplaceholder.typicode.com/users")
+//   await delay(2000)
+//   const data = await res.json();
+//   return {
+//     props: {
+//     }
+//   }
+// }
