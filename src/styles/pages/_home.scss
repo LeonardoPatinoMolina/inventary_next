@@ -1,3 +1,63 @@
+@use '../global/' as g;
+@use '../util/' as u;
+
 .home{
   min-height: calc(100vh - 4rem);
-}
+  box-sizing: border-box;
+  padding: 1rem;
+  
+  @include u.breakpoint-down("small"){
+    font-size: .9rem;
+  }
+
+  &__p{
+    width: 90%;
+    margin-inline: auto;
+    text-align: justify;
+    
+  }
+  &__title{
+    margin-bottom: 2rem;
+    text-align: center;
+    
+    @include u.breakpoint-down("small"){
+      font-size: 1.2rem;
+    }
+  }
+  &__img{
+    height: 200px;
+    width: auto;
+    opacity: .4;
+    margin: 1rem;
+    @include u.breakpoint-down("small"){
+      height: 100px;
+    }
+  }
+  &__slider{
+    margin-inline: auto;
+    background-color: #fff2;
+    box-shadow: 0 0 10px 0 #0005;
+    border-radius: .2rem;
+
+    &__slide{
+      padding: 2rem;
+      text-align: center;
+      box-sizing: border-box;
+      height: 100vmax;
+      border-inline: 2px solid #fff9;
+
+      & h2{
+        color: var(--colorAzulBase);
+        
+        @include u.breakpoint-down("small"){
+          font-size: 1.2rem;
+        }
+      }
+    }//end slide
+  }//end slider
+
+  &__sector_slider{
+    height: calc(100vh - 4rem);
+    @include g.mix-flex-aligment(center);
+  }
+}//end home

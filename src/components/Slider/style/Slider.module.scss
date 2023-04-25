@@ -1,20 +1,17 @@
 .slider{
-  height: 400px;
-  width: 400px;
   margin-inline: auto;
   overflow: hidden;
-  z-index: 9;
+  z-index: 1;
+  color: inherit;
 
   &__container{
-    min-width: 400px;
-    height: 100%;
     display: flex;
     transition: transform 1s;
     margin: 0;
+    color: inherit;
 
     &__slide{
-      background-color: green;
-      min-width: 400px;
+      color: inherit;
       height: 100%;
       margin: 0;
       box-sizing: border-box;
@@ -28,18 +25,26 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    transition: transform .5s;
-
+    font-size: inherit;
+    color: inherit;
+    height: 2rem;
+    background-color: #0002;
+    margin: .5rem;
+    border-radius: 1rem;
+    padding-inline: 1rem;
+    
     &__btn{
-      font-size: 2rem;
       font-weight: bold;
       background-color: transparent;
+      font-size: 2rem;
+      text-shadow: 0 0 6px #0003;
+      line-height: normal;
+      transition: transform .3s;
 
       &:disabled:hover{
         color: #0007;
       }
       &:hover{
-        color: var(--colorAzulBase);
         transform: scale(1.1);
       }
     }
