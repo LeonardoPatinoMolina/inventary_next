@@ -72,7 +72,7 @@ const Consult: React.FC = () => {
                 </td>
                 <td className="resultbox__p">{p.cantidad}</td>
                 <td className="resultbox__p">
-                  <Link href="#" title="editar producto">
+                  <Link href={`/edit/product/${p.codigo}`} title="editar producto">
                     <span
                       title="editar producto"
                       className="boton material-symbols-outlined"

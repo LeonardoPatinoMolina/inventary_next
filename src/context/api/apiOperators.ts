@@ -1,11 +1,11 @@
-import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react"
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const apiOperators = createApi({
   reducerPath: 'operatorsApi',
-  baseQuery: fetchBaseQuery({baseUrl: 'https://jsonplaceholder.typicode.com/users/',method:'GET'}),
+  baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:3000/api/operator/all',method:'GET'}),
   endpoints: (builder)=>({
     getOperators: builder.query<any, any>({
-      query: (args)=>''
+      query: ()=>''
     })
   })//end endpoints
 });

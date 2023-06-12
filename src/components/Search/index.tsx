@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import Link from 'next/link'
-import { Filters } from './Filters';
 import { useAppDispatch, useAppSelector } from '@/context/reduxHooks';
 import { set_query } from '@/context/store/features/searchRedux';
+import Link from 'next/link';
+import { useState } from 'react';
+import { Filters } from './Filters';
 
 export interface SearchProps {
   filter: "product" | "record";
@@ -74,7 +74,7 @@ export const Search: React.FC<SearchProps> = ({ filter, fetchQuery, fetchRefresh
       <Link
         title="añadir nuevo producto"
         className={`search__add`}
-        href='#'
+        href='/register/product'
       style={{color: '#fff',fontWeight: 'bolder'}}
       >
         <span className="material-symbols-outlined">add</span>

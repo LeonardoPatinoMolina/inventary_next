@@ -20,15 +20,19 @@ export const searchSlice = createSlice({
   reducers: {
     set_filter: (state: SearchState, action: PayloadAction<SearchState>) => {
       state.filter = action.payload.filter;
+      return state;
     },
     set_query: (state: SearchState, action: PayloadAction<SearchState>) => {
       state.query = action.payload.query;
+      return state;
     },
     set_page: (state: SearchState, action: PayloadAction<SearchState>) => {
       state.page = action.payload.page;
+      return state;
     },
     reset_search: (state: SearchState, action: PayloadAction<void>)=>{
       state = initialState
+      return state;
     }
   },
 });

@@ -45,6 +45,8 @@ b{
   color: #fff;
   max-height: 50px;
   cursor: pointer;
+  @include m.mix-flex-aligment(center);
+  gap: .5rem;
 }
 .cancel-btn{
   background-color: #cc2323;

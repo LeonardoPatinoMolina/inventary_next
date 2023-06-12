@@ -1,5 +1,5 @@
+import { MockeDB } from "@/server/infrastructure/db/mockProduct";
 import { NextApiRequest, NextApiResponse } from "next";
-import { MockeDB } from "@/server/infrastructure/db/mock";
 
 export default async function handler( req: NextApiRequest, res: NextApiResponse){
   try {

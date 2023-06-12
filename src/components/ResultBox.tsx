@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react"
+import React from "react";
 
 interface ResultBoxProps {
   children: any;
@@ -11,7 +11,7 @@ export const ResultBox: React.FC<ResultBoxProps> = ({ children, data})=>{
       <table className="resultbox__table">
         <thead className="resultbox__table__head">
           <tr>
-            <th colSpan={6}>Resultados de búsqueda: {data.total}</th>
+            <th colSpan={6}>Resultados de búsqueda: {data ? data.length : 0 }</th>
           </tr>
         </thead>
         <tbody className="resultbox__table__body">

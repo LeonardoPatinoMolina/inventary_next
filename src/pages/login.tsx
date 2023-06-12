@@ -1,7 +1,7 @@
 import { Footer } from "@/components/Footer";
 import Head from "next/head";
+import { useRouter } from 'next/router';
 import React, { FormEvent, useState } from "react";
-import { useRouter } from 'next/router'
 
 interface FormState {
   name: string;
@@ -39,7 +39,7 @@ const Login: React.FC = () => {
         <meta
           name="description"
           content={
-            "Ingrese a la app de seguimiento de inventario para acceder a rodos sus beneficios potenciales"
+            "Ingrese a la app de seguimiento de inventario para acceder a todos sus beneficios potenciales"
           }
         />
       </Head>

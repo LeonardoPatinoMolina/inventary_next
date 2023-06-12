@@ -1,5 +1,16 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { consultarDatosOperador } from "@/services/consultasRequest";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+
+export interface OperatorRState {
+  operators: any[];
+  isLoading?: boolean;
+  isError?: boolean;
+  isSuccess?: boolean;
+  page?: number;
+  totalPages?: number;
+  total?: number;
+}
+
 
 export interface OperatorsState {
   operators: Array<any>;

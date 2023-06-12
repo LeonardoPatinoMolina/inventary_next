@@ -1,3 +1,7 @@
 @forward 'login';
 @forward 'home';
-@forward 'consult';
+@forward 'consult/product';
+@forward 'consult/operator';
+@forward 'register/product';
+@forward 'register/operator';
+@forward 'edit';

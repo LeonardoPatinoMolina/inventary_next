@@ -1,0 +1,50 @@
+.operator-register{
+  text-align: center;
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  &__form-list{
+    list-style: none;
+    width: 100%;
+    box-sizing: border-box;
+
+    &__item{
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0 1rem 0;
+      border-bottom: 2px solid #ffffff73;
+
+      &:last-child{
+        display: flex;
+        justify-content: flex-end;
+        position: relative;
+        right: 10%;
+        border: none;
+      }
+      
+    }//end item
+  }//end form-list
+  
+        &__field{
+          width: 40%;
+          min-width: fit-content;
+          position: relative;
+          right: 10%;
+          font-size: 1.5rem;
+          height: 3rem;
+          border: 2px solid #888 ;
+          border-radius: 6px;
+          box-sizing: border-box;
+          height: 4rem;
+        }//end field
+
+  &__label{
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+}//end operato-register

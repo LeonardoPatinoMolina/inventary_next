@@ -1,12 +1,12 @@
 export class Product {
-  public codigo: number;
-  public prenda: string;
-  public ubicacion: string;
-  public talla: number;
-  public color: string;
-  public sexo: string;
-  public valorUnitario: number;
-  public cantidad: number;
+  public readonly codigo: number;
+  public readonly prenda: string;
+  public readonly ubicacion: string;
+  public readonly talla: number;
+  public readonly color: string;
+  public readonly sexo: string;
+  public readonly valorUnitario: number;
+  public readonly cantidad: number;
 
   constructor({
     codigo = 0,

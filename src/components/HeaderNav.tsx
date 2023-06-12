@@ -1,12 +1,12 @@
 "use client"
-import React, { Ref, useRef } from "react";
-import { Logo } from "./Logo";
-import { useOutsideClick } from "@/Hooks/useOutsideClick";
 import { useAdminConfiguration } from "@/Hooks/useAdminConfiguration";
 import { useDropDown } from "@/Hooks/useDropDown";
 import { useModal } from "@/Hooks/useModal";
+import { useOutsideClick } from "@/Hooks/useOutsideClick";
 import { useAppSelector } from "@/context/reduxHooks";
 import Link from 'next/link';
+import React, { Ref, useRef } from "react";
+import { Logo } from "./Logo";
 import { Modal } from "./Modal";
 
 export const HeaderNav: React.FC = () => {
@@ -71,7 +71,7 @@ export const HeaderNav: React.FC = () => {
             <div className={`navegation__drop_down ${dDown1.animateClass}`} ref={refClick1 as Ref<HTMLDivElement>}>
               <Link
                 className={`navegation__drop_down__option`}
-                href="/prueva"
+                href="/consult/operator"
               >
                 Operadores
               </Link>

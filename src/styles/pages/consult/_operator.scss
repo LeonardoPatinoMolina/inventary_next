@@ -1,0 +1,31 @@
+.operators{
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+  padding-bottom: 2rem;
+
+  &__list-options{
+    display: flex;
+    list-style-type: none;
+    width: 100%;
+
+    &__item{
+      margin-left: 1rem;
+    }
+  }//list-options
+}//end operators
+
+.boton-add-operator, .operators__refresh{
+  text-decoration: none;   
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: .5rem;
+  box-sizing: border-box;
+  width: fit-content;
+}
+.boton-add-operator{
+  background-color: #33d;
+}

@@ -19,17 +19,7 @@ export class Record {
     operadorCedula,
     operadorNombre,
     productId 
-  }: {
-    id: number;
-    fecha: Date;
-    hora: Date;
-    operacionId: number;
-    operacion?: string;
-    operatorId: number;
-    operadorCedula?: number;
-    operadorNombre?: string;
-    productId: number;
-  }) {
+  }: Record) {
     this.fecha = fecha;
     this.id = id;
     this.hora = hora;
