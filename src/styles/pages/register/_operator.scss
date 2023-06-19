@@ -1,14 +1,35 @@
 .operator-register{
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-sizing: border-box;
   width: 100%;
+  min-height: 80vh;
 
+  &__title{
+    margin-top: 2rem;
+    font-size: 1.4rem;
+  }
+
+  &__return{
+    position: fixed;
+    top: 5rem;
+    left: 2rem;
+  }
+  &__form{
+  width: inherit;
+  }
   &__form-list{
+
     list-style: none;
-    width: 100%;
+    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 4rem;
+    gap: 1rem;
+    margin-inline: auto;
     box-sizing: border-box;
 
     &__item{
@@ -18,33 +39,44 @@
       align-items: center;
       padding: 1rem 0 1rem 0;
       border-bottom: 2px solid #ffffff73;
-
-      &:last-child{
-        display: flex;
-        justify-content: flex-end;
-        position: relative;
-        right: 10%;
-        border: none;
-      }
       
+    &:focus{
+      border: unset;
+      outline: unset;
+    }
+
+    &:last-child{
+      display: flex;
+      justify-content: flex-end;
+      border: none;
+      grid-column: 2/3;
+      position: relative;
+      right: 10%;
+      grid-row: 3/4;
+    }
+
+    & label{
+      font-size: 1.1rem;
+    }
     }//end item
   }//end form-list
   
-        &__field{
-          width: 40%;
-          min-width: fit-content;
-          position: relative;
-          right: 10%;
-          font-size: 1.5rem;
-          height: 3rem;
-          border: 2px solid #888 ;
-          border-radius: 6px;
-          box-sizing: border-box;
-          height: 4rem;
-        }//end field
+  &__field{
+    width: 40%;
+    min-width: fit-content;
+    position: relative;
+    right: 10%;
+    font-size: 1rem;
+    border: unset;
+    border-radius: 6px;
+    box-sizing: border-box;
+    height: 4rem;
+    padding-inline: .6rem;
+    box-shadow: 0 0 8px 0 #0006;
+  }//end field
 
   &__label{
-  font-weight: 600;
-  font-size: 1.5rem;
-}
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
 }//end operato-register

@@ -1,7 +1,7 @@
 export class Record {
   private id: number;
-  private fecha: Date;
-  private hora: Date;
+  private fecha: string;
+  private hora: string;
   private operacionId: number;
   private operacion?: string;
   private operatorId: number;

@@ -1,19 +1,24 @@
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Link from 'next/link';
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { Modal } from "../../components/Modal";
-import { useModal } from "../../components/Modal/hooks/useModal";
-import { PageLayout } from "../../components/PageLayout";
+import { Modal } from "../../../components/Modal";
+import { useModal } from '../../../components/Modal/hooks/useModal';
+import { PageLayout } from "../../../components/PageLayout";
 
-export default function OperatorRegister() {
-  const navigate = useRouter();
-  const [formData, setFormData] = useState({
-    cedula: "",
-    credencial: "",
-    nombre: "",
-    apellido: "",
-    password: "",
-  });
+interface formData {
+    cedula: string,
+    credencial: string,
+    nombre: string,
+    apellido: string,
+    password: string,
+}
+
+export default function OperatorRegister({data}:  InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const router = useRouter();
+  
+  const ID = router.query.id;
+  const [formData, setFormData] = useState<formData>(data);
   const [isOpenAviso, openModalAviso, closeModalAviso] = useModal({isOpen: false});
   const [
     isOpenResponseSuccess,
@@ -32,7 +37,7 @@ export default function OperatorRegister() {
     const exp1 = /[\^!¡¿?$#&/().=-`´°|<>*;\\,{}]/g;
     let v: any[] = [];
     const values = Object.values(formData);
-    values.forEach((val) => v.push(exp1.exec(val)));
+    values.forEach((val: any) => v.push(exp1.exec(val)));
     const validator = v.filter((aja) => aja !== null);
     return validator.length === 0;
   };
@@ -62,7 +67,7 @@ export default function OperatorRegister() {
   const closeModalResponseSuccess2 = () => {
     // funcion encargada de cerrar modal exitoso y salirse de la ventana
     // closeModalResponseSuccess();
-    navigate.push("/consult/operators");
+    router.push("/consult/operator");
   };
 
   const handleChange = (e: any) => {
@@ -100,7 +105,7 @@ export default function OperatorRegister() {
         La tarea a fallado, verifique su conexión e intente más tarde.
       </Modal>
       <div className="operator-register back-operator">
-        <h2 className='operator-register__title'>REGISTRAR OPERADOR</h2>
+        <h2 className='operator-register__title'>EDITAR OPERADOR</h2>
         <Link href="/consult/operator" className="boton operator-register__return">
           Volver
           <span
@@ -124,7 +129,7 @@ export default function OperatorRegister() {
                 id="operator-register__nombre"
                 className="operator-register__field"
                 placeholder="Ingrese un nombre"
-                value={formData.nombre}
+                value={formData?.nombre}
                 name="nombre"
                 onChange={(e) => handleChange(e)}
                 required
@@ -142,7 +147,7 @@ export default function OperatorRegister() {
                 id="operator-register__apellido"
                 className="operator-register__field"
                 placeholder="Ingrese un apellido"
-                value={formData.apellido}
+                value={formData?.apellido}
                 name="apellido"
                 onChange={(e) => handleChange(e)}
                 required
@@ -160,7 +165,7 @@ export default function OperatorRegister() {
                 id="operator-register__cedula"
                 className="operator-register__field"
                 placeholder="Ingrese una Cedula"
-                value={formData.cedula}
+                value={formData?.cedula}
                 name="cedula"
                 onChange={(e) => handleChange(e)}
                 required
@@ -178,7 +183,7 @@ export default function OperatorRegister() {
                 id="operator-register__credencial"
                 className="operator-register__field"
                 placeholder="Ingrese una credencial"
-                value={formData.credencial}
+                value={formData?.credencial}
                 name="credencial"
                 onChange={(e) => handleChange(e)}
                 required
@@ -196,7 +201,7 @@ export default function OperatorRegister() {
                 id="operator-register__password"
                 className="operator-register__field"
                 placeholder="Ingrese una contraseña"
-                value={formData.password}
+                value={formData?.password}
                 name="password"
                 onChange={(e) => handleChange(e)}
                 required
@@ -204,7 +209,7 @@ export default function OperatorRegister() {
             </li>
             <li className="operator-register__form-list__item">
               <button className="operator-register__submit boton">
-                Registrar
+                Confirmar
               </button>
             </li>
           </ul>
@@ -212,4 +217,23 @@ export default function OperatorRegister() {
       </div>
     </PageLayout>
   );
+}
+
+// You should use getServerSideProps when:
+// - Only if you need to pre-render a page whose data must be fetched at request time
+export const getServerSideProps: GetServerSideProps<{data: formData}> = async (ctx) => {
+  
+  const data = {
+    cedula: "10083922",
+    credencial: "44-98243",
+    nombre: "fabiano bruno",
+    apellido: "gonzales",
+    password: "--",
+  }
+
+  return {
+    props: {
+      data
+    }
+  }
 }

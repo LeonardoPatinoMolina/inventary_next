@@ -1,10 +1,20 @@
+import { GetServerSideProps } from 'next';
+import Link from 'next/link';
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { useModal } from "../../Hooks/useModal";
 import { Modal } from "../../components/Modal";
+import { useModal } from "../../components/Modal/hooks/useModal";
 import { PageLayout } from "../../components/PageLayout";
 
-export default function RegiserProduct() {//contexto 2
+export type ColoresT = {name: string, id: string}
+export type PrendasT = ColoresT
+
+export interface productProps{
+  PRENDAS: PrendasT[];
+  COLORES: ColoresT[];
+}
+
+export default function RegiserProduct(props: productProps) {//contexto 2
 
   const [isOpenAviso, openModalAviso, closeModalAviso] = useModal({isOpen: false});
   const [
@@ -104,16 +114,16 @@ export default function RegiserProduct() {//contexto 2
       </Modal>
       <section className="product-register back-operator">
         <h2 className="product-register__title">REGISTRAR PRODUCTO</h2>
-        <div className="product-register__return boton">
+        <Link href="/consult/product" className="product-register__return boton">
           Volver
           <span
             className=" material-symbols-outlined"
-            onClick={() => navigate.push('/consult/product')}
+            // onClick={() => navigate.push('')}
             title="volver"
           >
             keyboard_return
           </span> 
-        </div>
+        </Link>
         <form id="product-register__form" onSubmit={submitHandler}>
           <ul className="product-register__list">
             <li className="product-register__item">
@@ -158,42 +168,13 @@ export default function RegiserProduct() {//contexto 2
                 >
                   Seleccionar
                 </option>
-                <option value="1" className="product-register__sex-option-">
-                  Abrigo
-                </option>
-                <option value="2" className="product-register__sex-option-">
-                  Bermuda
-                </option>
-                <option value="3" className="product-register__sex-option-">
-                  Blusa
-                </option>
-                <option value="4" className="product-register__sex-option-">
-                  Buzo
-                </option>
-                <option value="5" className="product-register__sex-option-">
-                  Camisa
-                </option>
-                <option value="6" className="product-register__sex-option-">
-                  Falda
-                </option>
-                <option value="7" className="product-register__sex-option-">
-                  Gorro
-                </option>
-                <option value="8" className="product-register__sex-option-">
-                  Medias
-                </option>
-                <option value="9" className="product-register__sex-option-">
-                  Pantalon
-                </option>
-                <option value="10" className="product-register__sex-option-">
-                  Pantaloneta
-                </option>
-                <option value="11" className="product-register__sex-option-">
-                  Short
-                </option>
-                <option value="12" className="product-register__sex-option-">
-                  Sueter
-                </option>
+                {props.PRENDAS.map((pre)=><option
+                  value={pre.id}
+                  key={`predaid-${pre.id}`}
+                  className="product-register__prenda-option-"
+                >
+                  {pre.name}
+                </option>)}
               </select>
             </li>
             <li className="product-register__item">
@@ -249,36 +230,13 @@ export default function RegiserProduct() {//contexto 2
                 >
                   Seleccionar
                 </option>
-                <option value="1" className="product-register__color-option-">
-                  Amarillo
-                </option>
-                <option value="2" className="product-register__color-option-">
-                  Azul
-                </option>
-                <option value="3" className="product-register__color-option-">
-                  Cian
-                </option>
-                <option value="4" className="product-register__color-option-">
-                  Lima
-                </option>
-                <option value="5" className="product-register__color-option-">
-                  Naranja
-                </option>
-                <option value="6" className="product-register__color-option-">
-                  Morado
-                </option>
-                <option value="7" className="product-register__color-option-">
-                  Rojo
-                </option>
-                <option value="8" className="product-register__color-option-">
-                  Rosa
-                </option>
-                <option value="9" className="product-register__color-option-">
-                  Verde
-                </option>
-                <option value="10" className="product-register__color-option-">
-                  Violeta
-                </option>
+                {props.COLORES.map((col,ci)=><option
+                  value={col.id}                  
+                  className="product-register__color-option-"
+                  key={`opcolor-${col.id}`}
+                >
+                  {col.name}
+                </option>)}
               </select>
             </li>
             <li className="product-register__item">
@@ -349,4 +307,43 @@ export default function RegiserProduct() {//contexto 2
       </section>
     </PageLayout>
   );
+}
+
+// You should use getServerSideProps when:
+// - Only if you need to pre-render a page whose data must be fetched at request time
+
+export const getServerSideProps: GetServerSideProps<productProps> = async (ctx) => {
+  
+  const PRENDAS: PrendasT[] = [
+    {name: 'Abrigo',id: '1'},
+    {name: 'Bermuda',id: '2'},
+    {name: 'Blusa',id: '3'},
+    {name: 'Buzo',id: '4'},
+    {name: 'Camisa',id: '5'},
+    {name: 'Falda',id: '6'},
+    {name: 'Gorro',id: '7'},
+    {name: 'Medias',id: '8'},
+    {name: 'Pantalon',id: '9'},
+    {name: 'Pantaloneta',id: '10'},
+    {name: 'Short',id: '11'},
+    {name: 'Sueter',id: '12'},
+  ]
+  const COLORES: ColoresT[] = [
+    {name:'Amarillo',id: '1'},
+    {name:'Azul',id: '2'},
+    {name: 'Cian',id: '3'},
+    {name: 'Lima',id: '4'},
+    {name: 'Naranja',id: '5'},
+    {name: 'Morado',id: '6'},
+    {name: 'Rojo',id: '7'},
+    {name: 'Rosa',id: '8'},
+    {name: 'Verde',id: '9'},
+    {name: 'Violeta',id: '10'}
+  ]
+
+  return {
+    props: {
+      PRENDAS, COLORES
+    }
+  }
 }

@@ -14,6 +14,9 @@ export default function Operator() {
     dispatch(setActive({ active: "admin" }));
   }, []);
 
+  const handleRefresh = ()=>{
+    refetch()
+  }
   return (
     <PageLayout title='Consultar operador' desc="obtenga información sobre el operador de su interés">
     <main className='operators back-operator'>
@@ -21,7 +24,7 @@ export default function Operator() {
         <li className='operators__list-options__item'>
           <button
             className='boton operators__refresh'
-            onClick={()=>{refetch()}}
+            onClick={()=>{handleRefresh()}}
             title='refrescar'
           >
             <span className="material-symbols-outlined">
@@ -43,7 +46,7 @@ export default function Operator() {
         {(isSuccess && !isLoading) ? data.data.map((ope: any)=>(
           <tr
           key={ope.id}
-          title="producto"
+          title="operador"
           id={ope.id}
           className="resultbox__item"
           onClick={() => {}}

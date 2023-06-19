@@ -55,8 +55,8 @@ export const Pagination: React.FC<PaginationProps> = ({callbackQuery, data})=>{
     }else {
       if (data.page > 1){
       return {next: true, back: true}
-    }
-    else{
+      }
+      else{
         return {next: true, back: false}
       }
     }

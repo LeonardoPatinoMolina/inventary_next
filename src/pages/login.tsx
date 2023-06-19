@@ -19,13 +19,11 @@ const Login: React.FC = () => {
 
   const handleSwitch = ()=>{
     setUser((prev)=>{    
-      if(prev === "operator"){
-        return 'admin'
-      }else{
-        return 'operator'
-      }
+      if(prev === "operator") return 'admin'
+      else return 'operator'
     });
   };
+  
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     router.push('/')

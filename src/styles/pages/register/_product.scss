@@ -7,10 +7,12 @@
   box-sizing: border-box;
   width: 100%;
   background-color: #f1f2f3;
+  
   &__title{
     margin-top: 2rem;
     font-size: 1.4rem;
   }
+  
   &__return{
     position: fixed;
     top: 5rem;
@@ -34,6 +36,7 @@
     align-items: center;
     padding: 1rem 0 1rem 0;
     border-bottom: 2px solid #ffffff73;
+
     &:focus{
       border: unset;
       outline: unset;
@@ -75,7 +78,6 @@
 #product-register__form{
   width: 100%;
 } 
-
 
 #product-register__sex,#product-register__estado{
   height: 4rem;

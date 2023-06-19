@@ -52,7 +52,7 @@ b{
   background-color: #cc2323;
 }
 .delete-btn{
-  background-color: #fd2323;
+  background-color: #f14f4f;
 }
 .boton:hover{
   background-color: #adf5cd;
@@ -62,13 +62,12 @@ b{
 .delete-btn:hover{
   background-color: #fa9d9d;
   color: #cc2323;
-  outline: 3px solid rgba(0, 0, 0, 0.202);
+  box-shadow: 0 0 10px 0 #0002;
 }
 .cancel-btn:hover{/*boton básico para cancelar*/
   background-color: #fa9d9d;
   color: #cc2323;
-  outline: 3px solid rgba(0, 0, 0, 0.202);
-
+  box-shadow: 0 0 10px 0 #0002;
 }
 
 .back-default{/*fondo básico de ventatna*/

@@ -1,7 +1,7 @@
 import React from "react";
 
 interface ResultBoxProps {
-  children: any;
+  children: React.ReactNode;
   data: any;
 }
 

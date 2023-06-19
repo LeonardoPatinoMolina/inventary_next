@@ -27,5 +27,9 @@
   width: fit-content;
 }
 .boton-add-operator{
-  background-color: #33d;
+  background-color: #6897fd;
+  &:hover{
+    background-color: #8aacf7;
+    color: #30398a;
+  }
 }

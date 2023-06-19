@@ -1,6 +1,6 @@
+import { Loot } from '@/components/Modal/hooks/useModal';
 import React from 'react';
-import './style/Modal.module.scss';
-import { Loot } from '@/Hooks/useModal';
+import styles from './style/Modal.module.scss';
 
 // export interface ModalProps {
 //   title: string; 
@@ -65,14 +65,14 @@ export const Modal: React.FC<ModalProps> = ({ loot, title, children, confirmM })
   return (
     <>
       {loot.isOpen && (
-        <div className="wrapper">
-          <div className="card modal">
+        <div className={styles.wrapper}>
+          <div className={`${styles.card} ${styles.modal}`}>
             <h2>{title}</h2>
-            <p className="modal-body">{children}</p>
-            <div>
-              <button className="btn green" onClick={() => confirmM(true)}>
+            <p className={styles["modal-body"]}>{children}</p>
+            <div className={styles.opctions}>
+              <button className={`boton ${styles.btn} ${styles.green}`} onClick={() => confirmM(true)}>
                 ACEPTAR</button>
-              <button className="btn red" onClick={() => confirmM(false)}>
+              <button className={`boton ${styles.btn} ${styles.red}`} onClick={() => confirmM(false)}>
                 CANCELAR</button>
             </div>
           </div>

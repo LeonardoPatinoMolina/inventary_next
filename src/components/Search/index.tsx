@@ -75,7 +75,7 @@ export const Search: React.FC<SearchProps> = ({ filter, fetchQuery, fetchRefresh
         title="añadir nuevo producto"
         className={`search__add`}
         href='/register/product'
-      style={{color: '#fff',fontWeight: 'bolder'}}
+        style={{color: '#fff',fontWeight: 'bolder'}}
       >
         <span className="material-symbols-outlined">add</span>
       </Link>

@@ -1,18 +1,34 @@
 //components
 import { Modal } from "../../../components/Modal";
 //dependences
+import { GetServerSideProps } from 'next';
 import { useRouter } from "next/router";
 import { FC, useRef, useState } from "react";
-import { useModal } from "../../../Hooks/useModal";
+import { useModal } from "../../../components/Modal/hooks/useModal";
+import { PageLayout } from "../../../components/PageLayout";
 import { useAppDispatch, useAppSelector } from "../../../context/reduxHooks";
+import { ColoresT, PrendasT } from "../../register/product";
 
 interface EditProductProps{
-  dataProduct: any
+  dataProduct: formData;
+  PRENDAS: PrendasT[];
+  COLORES: ColoresT[];
 }
 
-const ProductModifier: FC<EditProductProps> = ({dataProduct}) => {
-  const navigate = useRouter();
-  const CODE = navigate.query.code;
+interface formData {
+  codigo: string
+  prenda: string;
+  ubicacion: string;
+  talla: string;
+  color: string;
+  sexo: string;
+  valorUnitario: string;
+  cantidad: string;
+}
+
+const ProductModifier: FC<EditProductProps> = (props) => {
+  const router = useRouter();
+  const CODE = router.query.code;
   const dispatch = useAppDispatch();
   const [advertModalIsOpen, openAdvertModal, closeAdvertModal] =
     useModal({isOpen: false});
@@ -27,51 +43,43 @@ const ProductModifier: FC<EditProductProps> = ({dataProduct}) => {
   const [isOpenResponseWarning, openModalResponseWarning, closeModalResponseWarning] =
     useModal({isOpen: false});
 
-  const [dataForForm, setdataForForm] = useState(dataProduct);
-  const [currentProduct] = useState({
-    prenda: dataForForm.pre_Id,
-    ubicacion: dataForForm.pro_Ubicacion,
-    talla: dataForForm.pro_Talla,
-    color: dataForForm.col_Id,
-    sexo: dataForForm.pro_Sexo,
-    valorUnitario: dataForForm.pro_ValorUnitario,
-    cantidad: dataForForm.pro_Cantidad,
-  });
+  const [dataForForm, setdataForForm] = useState<formData>(props.dataProduct);
+  const [currentProduct] = useState<formData>(props.dataProduct);
   const { idUser } = useAppSelector(state => state.login);
   // const { codeProductSelected } = useSelector(state => state.temp);
   const data = useRef<any>({});
 
   const verification = () => {
     const prendaR =
-      currentProduct.prenda === dataForForm.pre_Id ? "def" : dataForForm.pre_Id;
+      currentProduct.prenda === dataForForm.prenda ? "def" : dataForForm.prenda;
     const ubicacionR =
-      currentProduct.ubicacion === dataForForm.pro_Ubicacion
+      currentProduct.ubicacion === dataForForm.ubicacion
         ? "def"
-        : dataForForm.pro_Ubicacion;
+        : dataForForm.ubicacion;
     const tallaR =
-      currentProduct.talla === dataForForm.pro_Talla
+      currentProduct.talla === dataForForm.talla
         ? "def"
-        : dataForForm.pro_Talla;
+        : dataForForm.talla;
     const colorR =
-      currentProduct.color === dataForForm.col_Id ? "def" : dataForForm.col_Id;
+      currentProduct.color === dataForForm.color ? "def" : dataForForm.color;
     const sexoR =
-      currentProduct.sexo === dataForForm.pro_Sexo
+      currentProduct.sexo === dataForForm.sexo
         ? "def"
-        : dataForForm.pro_Sexo;
+        : dataForForm.sexo;
     const valorUnitarioR =
-      currentProduct.valorUnitario !== dataForForm.pro_ValorUnitario ||
-      currentProduct.cantidad !== dataForForm.pro_Cantidad
-        ? dataForForm.pro_ValorUnitario
+      currentProduct.valorUnitario !== dataForForm.valorUnitario ||
+      currentProduct.cantidad !== dataForForm.cantidad
+        ? dataForForm.valorUnitario
         : "def";
     const cantidadR =
-      currentProduct.valorUnitario !== dataForForm.pro_ValorUnitario ||
-      currentProduct.cantidad !== dataForForm.pro_Cantidad
-        ? dataForForm.pro_Cantidad
+      currentProduct.valorUnitario !== dataForForm.valorUnitario ||
+      currentProduct.cantidad !== dataForForm.cantidad
+        ? dataForForm.cantidad
         : "def";
     data.current = {
       objetivo: "producto",
       userId: idUser,
-      codigo: dataForForm.pro_Codigo,
+      codigo: dataForForm.codigo,
       prenda: prendaR,
       ubicacion: ubicacionR,
       talla: tallaR,
@@ -131,7 +139,7 @@ const ProductModifier: FC<EditProductProps> = ({dataProduct}) => {
   const closeModalResponseSuccess2 = () => {
     // funcion encargada de cerrar modal exitoso y salirse de la ventana
     // closeModalResponseSuccess();
-    navigate.push("/consult/product");
+    router.push("/consult/product");
   };
 
   return (
@@ -174,7 +182,7 @@ const ProductModifier: FC<EditProductProps> = ({dataProduct}) => {
       <div className="product-modifer back-operator">
         <h2 className="product-modifer__title">MODIFICAR PRODUCTO</h2>
         <div >
-          <button className="product-modifer__control" onClick={()=>{navigate.back()}}>
+          <button className="product-modifer__control" onClick={()=>{router.back()}}>
           <div className="product-register__return boton">
             Volver
             <span className="material-symbols-outlined" title="volver">
@@ -198,9 +206,9 @@ const ProductModifier: FC<EditProductProps> = ({dataProduct}) => {
                 id="product-register__prenda"
                 className="product-register__field"
                 form="product-register__form"
-                value={dataForForm.pre_Id}
+                value={dataForForm.prenda}
                 onChange={(e) =>
-                  setdataForForm({ ...dataForForm, pre_Id: e.target.value })
+                  setdataForForm({ ...dataForForm, prenda: e.target.value })
                 }
                 required
               >
@@ -210,90 +218,13 @@ const ProductModifier: FC<EditProductProps> = ({dataProduct}) => {
                 >
                   Seleccionar
                 </option>
-                <option
-                  value="1"
+                {props.PRENDAS.map((pre)=><option
+                  value={pre.id}
+                  key={`predaid-${pre.id}`}
                   className="product-register__prenda-option-"
-                  id="prenda1"
                 >
-                  Abrigo
-                </option>
-                <option
-                  value="2"
-                  className="product-register__prenda-option-"
-                  id="prenda2"
-                >
-                  Bermuda
-                </option>
-                <option
-                  value="3"
-                  className="product-register__prenda-option-"
-                  id="prenda3"
-                >
-                  Blusa
-                </option>
-                <option
-                  value="4"
-                  className="product-register__prenda-option-"
-                  id="prenda4"
-                >
-                  Buzo
-                </option>
-                <option
-                  value="5"
-                  className="product-register__prenda-option-"
-                  id="prenda5"
-                >
-                  Camisa
-                </option>
-                <option
-                  value="6"
-                  className="product-register__prenda-option-"
-                  id="prenda6"
-                >
-                  Falda
-                </option>
-                <option
-                  value="7"
-                  className="product-register__prenda-option-"
-                  id="prenda7"
-                >
-                  Gorro
-                </option>
-                <option
-                  value="8"
-                  className="product-register__prenda-option-"
-                  id="prenda8"
-                >
-                  Medias
-                </option>
-                <option
-                  value="9"
-                  className="product-register__prenda-option-"
-                  id="prenda9"
-                >
-                  Pantalon
-                </option>
-                <option
-                  value="10"
-                  className="product-register__prenda-option-"
-                  id="prenda10"
-                >
-                  Pantaloneta
-                </option>
-                <option
-                  value="11"
-                  className="product-register__prenda-option-"
-                  id="prenda11"
-                >
-                  Short
-                </option>
-                <option
-                  value="12"
-                  className="product-register__prenda-option-"
-                  id="prenda12"
-                >
-                  Sueter
-                </option>
+                  {pre.name}
+                </option>)}                
               </select>
             </li>
             <li className="product-modifer__item">
@@ -303,11 +234,11 @@ const ProductModifier: FC<EditProductProps> = ({dataProduct}) => {
                 id="product-modifer__ubicacion"
                 className="product-modifer__field"
                 placeholder="Nueva ubicación"
-                defaultValue={dataForForm.pro_Ubicacion}
+                defaultValue={dataForForm.ubicacion}
                 onChange={(e) =>
                   setdataForForm({
                     ...dataForForm,
-                    pro_Ubicacion: e.target.value,
+                    ubicacion: e.target.value,
                   })
                 }
                 required
@@ -320,9 +251,9 @@ const ProductModifier: FC<EditProductProps> = ({dataProduct}) => {
                 id="product-modifer__talla"
                 className="product-modifer__field"
                 placeholder="Nueva talla"
-                defaultValue={dataForForm.pro_Talla}
+                defaultValue={dataForForm.talla}
                 onChange={(e) =>
-                  setdataForForm({ ...dataForForm, pro_Talla: e.target.value })
+                  setdataForForm({ ...dataForForm, talla: e.target.value })
                 }
                 required
               />
@@ -335,9 +266,9 @@ const ProductModifier: FC<EditProductProps> = ({dataProduct}) => {
                 id="product-register__color"
                 className="product-register__field"
                 form="product-register__form"
-                value={dataForForm.col_Id}
+                value={dataForForm.color}
                 onChange={(e) =>
-                  setdataForForm({ ...dataForForm, col_Id: e.target.value })
+                  setdataForForm({ ...dataForForm, color: e.target.value })
                 }
                 required
               >
@@ -347,76 +278,13 @@ const ProductModifier: FC<EditProductProps> = ({dataProduct}) => {
                 >
                   Seleccionar
                 </option>
-                <option
-                  value="1"
+                {props.COLORES.map((col,ci)=><option
+                  value={col.id}                  
                   className="product-register__color-option-"
-                  id="color1"
+                  key={`opcolor-${col.id}`}
                 >
-                  Amarillo
-                </option>
-                <option
-                  value="2"
-                  className="product-register__color-option-"
-                  id="color2"
-                >
-                  Azul
-                </option>
-                <option
-                  value="3"
-                  className="product-register__color-option-"
-                  id="color3"
-                >
-                  Cian
-                </option>
-                <option
-                  value="4"
-                  className="product-register__color-option-"
-                  id="color4"
-                >
-                  Lima
-                </option>
-                <option
-                  value="5"
-                  className="product-register__color-option-"
-                  id="color5"
-                >
-                  Naranja
-                </option>
-                <option
-                  value="6"
-                  className="product-register__color-option-"
-                  id="color6"
-                >
-                  Morado
-                </option>
-                <option
-                  value="7"
-                  className="product-register__color-option-"
-                  id="color7"
-                >
-                  Rojo
-                </option>
-                <option
-                  value="8"
-                  className="product-register__color-option-"
-                  id="color8"
-                >
-                  Rosa
-                </option>
-                <option
-                  value="9"
-                  className="product-register__color-option-"
-                  id="color9"
-                >
-                  Verde
-                </option>
-                <option
-                  value="10"
-                  className="product-register__color-option-"
-                  id="color10"
-                >
-                  Violeta
-                </option>
+                  {col.name}
+                </option>)}
               </select>
             </li>
             <li className="product-modifer__item">
@@ -426,9 +294,9 @@ const ProductModifier: FC<EditProductProps> = ({dataProduct}) => {
                 title="sexo"
                 className="product-modifer__field select-sexo"
                 form="form__formulario-mod-producto"
-                value={dataForForm.pro_Sexo}
+                value={dataForForm.sexo}
                 onChange={(e) =>
-                  setdataForForm({ ...dataForForm, pro_Sexo: e.target.value })
+                  setdataForForm({ ...dataForForm, sexo: e.target.value })
                 }
                 required
               >
@@ -461,11 +329,11 @@ const ProductModifier: FC<EditProductProps> = ({dataProduct}) => {
                 id="product-modifer__precio"
                 className="product-modifer__field"
                 placeholder="Nuevo precio"
-                defaultValue={dataForForm.pro_ValorUnitario}
+                defaultValue={dataForForm.valorUnitario}
                 onChange={(e) =>
                   setdataForForm({
                     ...dataForForm,
-                    pro_ValorUnitario: e.target.value,
+                    valorUnitario: e.target.value,
                   })
                 }
                 required
@@ -478,11 +346,11 @@ const ProductModifier: FC<EditProductProps> = ({dataProduct}) => {
                 id="product-register__precio"
                 className="product-register__field"
                 placeholder="Digite una cifra"
-                defaultValue={dataForForm.pro_Cantidad}
+                defaultValue={dataForForm.cantidad}
                 onChange={(e) =>
                   setdataForForm({
                     ...dataForForm,
-                    pro_Cantidad: e.target.value,
+                    cantidad: e.target.value,
                   })
                 }
                 required
@@ -503,13 +371,41 @@ const ProductModifier: FC<EditProductProps> = ({dataProduct}) => {
 }
 
 export default ProductModifier;
+
 // You should use getServerSideProps when:
 // - Only if you need to pre-render a page whose data must be fetched at request time
-import { GetServerSideProps } from 'next';
-import { PageLayout } from "../../../components/PageLayout";
+export const getServerSideProps: GetServerSideProps<{dataProduct: formData, PRENDAS: PrendasT[], COLORES: ColoresT[]}> = async (ctx) => {
+  
+  const PRENDAS: PrendasT[] = [
+    {name: 'Abrigo',id: '1'},
+    {name: 'Bermuda',id: '2'},
+    {name: 'Blusa',id: '3'},
+    {name: 'Buzo',id: '4'},
+    {name: 'Camisa',id: '5'},
+    {name: 'Falda',id: '6'},
+    {name: 'Gorro',id: '7'},
+    {name: 'Medias',id: '8'},
+    {name: 'Pantalon',id: '9'},
+    {name: 'Pantaloneta',id: '10'},
+    {name: 'Short',id: '11'},
+    {name: 'Sueter',id: '12'},
+  ]
+  const COLORES: ColoresT[] = [
+    {name:'Amarillo',id: '1'},
+    {name:'Azul',id: '2'},
+    {name: 'Cian',id: '3'},
+    {name: 'Lima',id: '4'},
+    {name: 'Naranja',id: '5'},
+    {name: 'Morado',id: '6'},
+    {name: 'Rojo',id: '7'},
+    {name: 'Rosa',id: '8'},
+    {name: 'Verde',id: '9'},
+    {name: 'Violeta',id: '10'}
+  ]
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const data = {
+
+  const dataProduct: formData = {
+    codigo: '00220',
     prenda: '2',
     ubicacion: '12-12-00',
     talla: '14',
@@ -521,7 +417,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   return {
     props: {
-      dataProduct: data
+      dataProduct,
+      PRENDAS,
+      COLORES
     }
   }
 }
